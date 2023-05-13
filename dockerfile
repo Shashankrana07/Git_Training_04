@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-LABEL version="0.0.1"
+LABEL version="0.0.2"
 LABEL owner="shashankkumarrana@gmail.com"
 
 RUN apt-get update && apt-get update -y
