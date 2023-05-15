@@ -14,7 +14,7 @@ LABEL owner="shashankkumarrana@gmail.com"
 #    print (((i)*' ')+(((((n-i)*2)-1)*'*')))
 
 #RUN apt-get install nginx -y
-ADD https://github.com/Shashankrana07/Git_Training_04.git/ticktacktoe.py /
+ADD ticktacktoe.py https://github.com/Shashankrana07/Git_Training_04.git/ticktacktoe.py
 
 #EXPOSE 80
 
