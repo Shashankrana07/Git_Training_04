@@ -20,4 +20,4 @@ ADD ticktacktoe.py https://github.com/Shashankrana07/Git_Training_04.git
 
 #CMD [ "nginx", "-g", "daemon off;"]
 #COPY index.html index.html
-CMD [ "python", "./ticktacktoe.py" ]
+CMD [ "python", "https://github.com/Shashankrana07/Git_Training_04.git/ticktacktoe.py" ]
