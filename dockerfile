@@ -1,6 +1,6 @@
 #FROM ubuntu:latest
 #FROM nginx:latest
-FROM python:letest
+FROM python:latest
 
 LABEL version="0.0.2"
 LABEL owner="shashankkumarrana@gmail.com"
