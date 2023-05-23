@@ -1,7 +1,7 @@
 #FROM ubuntu:latest
 #FROM nginx:latest
 #FROM python:latest
-FROM tomact:latest
+FROM tomcat:latest
 
 #LABEL version="0.0.2"
 #LABEL owner="shashankkumarrana@gmail.com"
@@ -16,7 +16,7 @@ FROM tomact:latest
 
 #RUN apt-get install nginx -y
 #ADD ticktacktoe.py /
-ADD **/*.war /usr/local/tomact/webapps
+ADD **/*.jar /usr/local/tomact/webapps
 #EXPOSE 80
 EXPOSE 8080
 #CMD [ "nginx", "-g", "daemon off;"]
