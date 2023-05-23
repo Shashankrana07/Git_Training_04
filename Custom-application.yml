@@ -1,0 +1,37 @@
+version: '3.9' #version of YML
+
+services:
+  distro:
+    image: alpine:latest
+    restart: always
+    container_name: Custom_alpine
+    entrypoint: tail -f /dev/null #tail -f is an ongoing process, preventing container to stop
+
+  
+  database:
+    image: postgres:latest
+    restart: always
+    container_name: postgres_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ../dump:/tmp/
+    
+  web:
+    image: nginx
+    restart: always
+    container_name: nginx_web
+    ports:
+      - "8082:80"
+    volumes:
+      - ./mysite.template:/etc/nginx/conf.d/mysite.template
+    environment:
+      - NGINX_HOST=sample.com
+      - NGINX_port=80
+    links:
+      - database:db
+      - distro
+
+volumes:
+  data:
+    external: true

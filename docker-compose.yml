@@ -26,3 +26,102 @@ services:
 
 volumes:
   db_data:
+
+---
+
+version: "3.9"
+services:
+  # Service name defined as web
+  web:
+    # Pull the image from Repository
+    # replace username/repo:tag with your name and image details
+    image: anshudevops/frindly_hello:latest
+    #Command used to deploy service
+    deploy:
+      #Run instance of that image as a service called web
+      replicas: 5
+      resources:
+        #limit each one to use, at most, 20% of a single core of CPU and 100MB of RAM
+        limits:
+          cpus: "0.2"
+          memory: 100MB
+      # Immidiate restart containers if one fails
+      restart_policy:
+        condition: on-failure
+    # Map port 4000 on the host to web's port 80
+    ports:
+      - "4000:80"
+    #Define default network
+    networks:
+      - webnet
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8181:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - "/home/docker/data:/data"
+    deploy:
+      placement:
+        constraint: [node.role == manager]
+    command: redis-server --appendonly yes
+    networks:
+      - webnet
+networks:
+  webnet:
+
+---
+
+version: "3.9"
+services:
+  postgresdb:
+    image: postgres:latest
+    secrets: 
+      - db_username
+      - db_password
+    environment:
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db_password
+      - POSTGRES_USER_FILE=/run/secrets/db_username
+
+  centOS:
+    image: centos
+    deploy:
+      replicas: 1
+    entrypoint: /bin/sh
+    stdin_open: true
+    tty: true
+    secrets:
+      - source: my-secret
+
+
+secrets:
+  db_username:
+    file: ./postgres_user.txt
+  db_password:
+    file: ./postgres_password.txt
+  my-secret:
+    external: true
+
+
+    ---
+version: "3.9"
+services:
+  mysqldb:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD: "mypassword"
+      - MYSQL_DATABASE: "drupal"
+    deploy:
+      replicas: 1
+      constraints:
+        - node.labels.region == east-1-d
