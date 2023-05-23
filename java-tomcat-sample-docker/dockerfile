@@ -1,7 +1,7 @@
 #FROM ubuntu:latest
 #FROM nginx:latest
 #FROM python:latest
-FROM tomact:latest
+FROM tomact:8.0
 
 #LABEL version="0.0.2"
 #LABEL owner="shashankkumarrana@gmail.com"
