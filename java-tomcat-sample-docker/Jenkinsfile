@@ -17,6 +17,6 @@ pipeline {
                 sh 'docker build ./java-tomcat-sample-docker -t dockersamplewebapp:${env.BUILD_ID}'
             }
         }
-        }
+        
     }
 }
