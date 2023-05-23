@@ -14,7 +14,7 @@ pipeline {
         }
         stage ('Create Tomcat Docker Image'){
             steps {
-                sh 'docker build ./java-tomcat-sample-docker -t dockersamplewebapp:${env.BUILD_ID}'
+                sh 'docker build . -t dockersamplewebapp:${env.BUILD_ID}'
             }
         }
         
