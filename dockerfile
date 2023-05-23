@@ -21,5 +21,5 @@ ADD **/*.war /usr/local/tomact/webapps
 EXPOSE 8080
 #CMD [ "nginx", "-g", "daemon off;"]
 #COPY index.html index.html
-CMD [ "python", "./ticktacktoe.py" ]
+#CMD [ "python", "./ticktacktoe.py" ]
 CMD [ "catalina.sh", "run"]
