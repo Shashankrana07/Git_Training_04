@@ -16,7 +16,7 @@ FROM tomact:latest
 
 #RUN apt-get install nginx -y
 #ADD ticktacktoe.py /
-ADD **/*.war /usr/local/tomact/webapps
+ADD **/*.jar /usr/local/tomact/webapps
 #EXPOSE 80
 EXPOSE 8080
 #CMD [ "nginx", "-g", "daemon off;"]
