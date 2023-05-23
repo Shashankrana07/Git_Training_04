@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build Application') {
             steps {
-                sh 'mvn -f https://github.com/Shashankrana07/Jenkins_Upgradev3.git/java-tomact-sample/pom.xml clean package'
+                sh 'mvn -f pom.xml clean package'
             }
             post {
                 success{
